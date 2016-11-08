@@ -17,8 +17,14 @@
               <process-sources>com.igormaznitsa:mvn-golang-wrapper:fmt</process-sources>
               <test>com.igormaznitsa:mvn-golang-wrapper:test</test>
               <package>com.igormaznitsa:mvn-golang-wrapper:build</package>
-              <install>com.igormaznitsa:mvn-golang-wrapper:mvninstall</install>
-              <deploy>com.igormaznitsa:mvn-golang-wrapper:install</deploy>
+              <install>
+                com.igormaznitsa:mvn-golang-wrapper:mvninstall,
+                org.apache.maven.plugins:maven-install-plugin:install
+              </install>
+              <deploy>
+                com.igormaznitsa:mvn-golang-wrapper:install,
+                org.apache.maven.plugins:maven-deploy-plugin:deploy
+              </deploy>
             </phases>
           </lifecycle>
         </lifecycles>
@@ -30,6 +36,7 @@
       <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
       <configuration>
         <type>mvn-golang</type>
+        <extension>mvn-golang</extension>
         <addedToClasspath>false</addedToClasspath>
         <includesDependencies>false</includesDependencies>
       </configuration>

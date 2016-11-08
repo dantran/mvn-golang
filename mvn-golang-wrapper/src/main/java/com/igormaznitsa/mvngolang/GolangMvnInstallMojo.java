@@ -20,14 +20,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Locale;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.installer.ArtifactInstallationException;
-import org.apache.maven.artifact.installer.ArtifactInstaller;
-import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Resource;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
@@ -44,17 +43,12 @@ import org.zeroturnaround.zip.ZipUtil;
 
 /**
  * The Mojo packs all found source and resource project folders and create new artifact in the local repository.
- * 
+ *
  * @since 2.1.0
  */
 @Mojo(name = "mvninstall", defaultPhase = LifecyclePhase.INSTALL, threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE)
 public class GolangMvnInstallMojo extends AbstractMojo {
 
-  @Parameter(property = "localRepository", required = true, readonly = true)
-  protected ArtifactRepository localRepository;
-
-  @Component
-  protected ArtifactInstaller installer;
 
   @Component
   private MavenProject project;
@@ -71,15 +65,10 @@ public class GolangMvnInstallMojo extends AbstractMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
     try {
       final File archive = compressProjectFiles();
-      try {
-        this.installer.install(archive, project.getArtifact(), this.localRepository);
-      } finally {
-        FileUtils.deleteQuietly(archive);
-      }
+      Artifact artifact = this.project.getArtifact();
+      artifact.setFile( archive );
     } catch (IOException ex) {
       throw new MojoExecutionException("Detected unexpected IOException, check the log!", ex);
-    } catch (ArtifactInstallationException ex) {
-      throw new MojoFailureException("Can't install the artifact!");
     }
   }
 
@@ -109,7 +98,7 @@ public class GolangMvnInstallMojo extends AbstractMojo {
       IOUtils.closeQuietly(writer);
     }
   }
-  
+
   @Nonnull
   private File compressProjectFiles() throws IOException {
     final Artifact artifact = this.project.getArtifact();
@@ -128,7 +117,7 @@ public class GolangMvnInstallMojo extends AbstractMojo {
 
     try {
       saveEffectivePom(folderToPack);
-      
+
       FileUtils.copyFileToDirectory(this.project.getFile(), folderToPack);
       safeCopyDirectory(this.project.getBuild().getSourceDirectory(), folderToPack);
       safeCopyDirectory(this.project.getBuild().getTestSourceDirectory(), folderToPack);

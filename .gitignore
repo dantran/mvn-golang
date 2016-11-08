@@ -11,3 +11,7 @@ buildNumber.properties
 /mvn-golang-wrapper/nbproject/
 /mvn-golang-examples/mvn-golang-example-gomobile/classes/
 /mvn-golang-examples/mvn-golang-example-gomobile/test-classes/
+#eclipse
+.settings
+.classpath
+.project
