@@ -17,13 +17,13 @@
   <build>
     <sourceDirectory>${basedir}${file.separator}src</sourceDirectory>
     <directory>${basedir}${file.separator}bin</directory>
-    
+
     <resources>
       <resource>
         <directory>${basedir}${file.separator}resources</directory>
       </resource>
     </resources>
-    
+
     <plugins>
       <plugin>
         <groupId>com.igormaznitsa</groupId>
@@ -36,10 +36,6 @@
         <executions>
           <execution>
             <id>default-build</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>default-mvninstall</id>
             <phase>none</phase>
           </execution>
         </executions>
