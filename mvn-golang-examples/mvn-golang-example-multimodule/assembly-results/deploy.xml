@@ -13,19 +13,19 @@
 
   <fileSets>
     <fileSet>
-      <directory>${project.basedir}/../app1/bin</directory>
+      <directory>${project.basedir}/../app-1/bin</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>app1-${project.version}</include>
-        <include>app1-${project.version}.exe</include>
+        <include>app-1-${project.version}</include>
+        <include>app-1-${project.version}.exe</include>
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}/../app2/bin</directory>
+      <directory>${project.basedir}/../app-2/bin</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>app2-${project.version}</include>
-        <include>app2-${project.version}.exe</include>
+        <include>app-2-${project.version}</include>
+        <include>app-2-${project.version}.exe</include>
       </includes>
     </fileSet>
   </fileSets>

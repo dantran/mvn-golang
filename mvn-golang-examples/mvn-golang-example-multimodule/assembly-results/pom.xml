@@ -16,13 +16,13 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>app1</artifactId>
+      <artifactId>app-1</artifactId>
       <version>${project.version}</version>
       <type>mvn-golang</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>app2</artifactId>
+      <artifactId>app-2</artifactId>
       <version>${project.version}</version>
       <type>mvn-golang</type>
     </dependency>

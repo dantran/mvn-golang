@@ -9,10 +9,10 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>app2</artifactId>
+  <artifactId>app-1</artifactId>
   <packaging>mvn-golang</packaging>
 
-  <name>App-2</name>
+  <name>App-1</name>
 
   <build>
     <sourceDirectory>${basedir}${file.separator}src</sourceDirectory>
